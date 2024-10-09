@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+        }
+
+        #background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-top: 15%;
+            letter-spacing: 5px;
+            animation: fadeIn 2s ease-in-out;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="{% static 'myapp/img/bg.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <h1>Hello, {{ username }}!</h1>
+    <h1>Views: {{ views }}</h1>
+    <h3>csrftoken: {{ csrftoken }}</h3>
+    <h3>sessionid: {{ sessionid }}</h3>
+</body>
+</html>
