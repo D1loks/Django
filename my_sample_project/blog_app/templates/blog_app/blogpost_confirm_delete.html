@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Видалення поста</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f7f7f7;
+            color: rgba(0, 0, 0, 0.85);
+            filter: grayscale(100%);
+        }
+        .container {
+            max-width: 600px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.8);
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        p {
+            opacity: 0.85;
+        }
+        .btn-danger, .btn-secondary {
+            filter: none;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+        .btn-secondary:hover {
+            background-color: #6c757d;
+            border-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Видалити пост "{{ object.title }}"?</h2>
+    <p>Ви впевнені, що хочете видалити цей пост?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Видалити</button>
+        <a href="{% url 'blog_app:posts' %}" class="btn btn-secondary">Скасувати</a>
+    </form>
+</div>
+{% endblock %}
+
+</body>
+</html>

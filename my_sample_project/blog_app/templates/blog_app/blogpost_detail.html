@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ object.title }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f7f7f7;
+            color: rgba(0, 0, 0, 0.85);
+            filter: grayscale(100%);
+        }
+        .container {
+            max-width: 800px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.8);
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        p, small {
+            opacity: 0.85;
+        }
+        .btn-secondary, .btn-warning, .btn-danger {
+            filter: none;
+            transition: background-color 0.3s, border-color 0.3s;
+             color: #ffffff;
+        }
+        .btn-secondary:hover {
+            background-color: #6c757d;
+            border-color: #5a6268;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+            border-color: #d39e00;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+
+    </style>
+</head>
+<body>
+
+{% block content %}
+<div class="container mt-5">
+    <h2>{{ object.title }}</h2>
+    <p><strong>Автор:</strong> {{ object.owner.username }}</p>
+    <p>{{ object.text }}</p>
+    <p><small>Опубліковано: {{ object.created_at }}</small></p>
+
+   <a href="/posts/" class="btn btn-secondary" style="color: white;">Повернутися до списку постів</a>
+
+
+    {% if user == object.owner %}
+        <a href="{% url 'blog_app:update_post' object.pk %}" class="btn btn-warning">Редагувати</a>
+        <a href="{% url 'blog_app:delete_post' object.pk %}" class="btn btn-danger">Видалити</a>
+    {% endif %}
+</div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if object %}Редагувати{% else %}Створити{% endif %} пост</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f7f7f7;
+            color: rgba(0, 0, 0, 0.85);
+            filter: grayscale(100%);
+        }
+        .container {
+            max-width: 600px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h2 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.8);
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        form {
+            opacity: 0.9;
+        }
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: #fff;
+            transition: background-color 0.3s, border-color 0.3s;
+            filter: none;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+        .btn-secondary {
+            color: #6c757d;
+            transition: color 0.3s;
+            filter: none;
+        }
+        .btn-secondary:hover {
+            color: #5a6268;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+{% block content %}
+<div class="container">
+    <h2>{% if object %}Редагувати{% else %}Створити{% endif %} пост</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="d-flex justify-content-between mt-3">
+            <button type="submit" class="btn btn-success">{% if object %}Зберегти{% else %}Додати{% endif %} пост</button>
+            <a href="{% url 'blog_app:posts' %}" class="btn btn-secondary">Повернутися до списку постів</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+</body>
+</html>
